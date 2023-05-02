@@ -2,6 +2,7 @@ plugins {
     java
     scala
     jacoco
+    application
 }
 repositories {
     mavenCentral()
@@ -16,3 +17,17 @@ dependencies {
 tasks.named<Test>("test") {
     useJUnitPlatform()
 }
+
+application {
+// Define the main class for the application.
+    mainClass.set("src.main.java.Sera")
+}
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events(*org.gradle.api.tasks.testing.logging.TestLogEvent.values())
+        showStandardStreams = true
+    }
+}
+
+
